@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: 'http://localhost:3001/dogs/default-image'
+      defaultValue: 'https://henry-pi-back-production.up.railway.app/dogs/default-image'
     },
     name: {
       type: DataTypes.STRING,
