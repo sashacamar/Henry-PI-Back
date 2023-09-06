@@ -53,7 +53,6 @@ const searchImage = async(dog)=>
 
 //Funcion para asociar los temperamentos recogidos por body al crear un nuevo perro
 const associateTemperament = async(dog, temperaments)=>{
-    console.log(temperaments);
     for (const temperament of temperaments) {
         const temp = await Temperament.findOne({where:{name: temperament}});
         temp && dog.addTemperament(temp.get('id'))
@@ -143,6 +142,7 @@ const getDogById = async(dogID)=>{
 
 //--------Agregar una nueva raza a la DDBB
 const createDog = async(name, heightMin, heightMax, weightMin, weightMax, life_spanMin, life_spanMax, temperaments)=>{
+    if(!temperaments.length) throw new Error('No temperaments to relate')
     const newDog = await Dog.create({name, heightMin, heightMax, weightMin, weightMax, life_spanMin, life_spanMax});
     await associateTemperament(newDog, temperaments);
     return newDog;
